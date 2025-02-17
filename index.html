@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paste Bin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 50px;
+            background-color: #f0f2f5; /* Light grey background for modern look */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+        }
+        h1, h2 {
+            color: #333;
+            font-weight: 700;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #dfe4ea;
+            padding: 15px;
+            font-size: 1rem;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+            border-color: #0d6efd;
+        }
+        .btn-modern {
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .btn-save {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .btn-save:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            color: white;
+        }
+        .btn-edit {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-view {
+            background-color: #6c757d;
+            color: white;
+        }
+        .paste-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .paste-item .card-text {
+            color: #6c757d;
+        }
+        .paste-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        @media (max-width: 767px) {
+            #saveButton {
+                width: 100%;
+            }
+            .card {
+                padding: 15px; /* Reduce padding on mobile */
+            }
+            .paste-actions {
+                justify-content: center; /* Center align buttons on mobile */
+            }
+            .paste-actions .btn-modern {
+                width: auto; /* Allow buttons to shrink to content size */
+                padding: 10px 20px; /* Adjust padding for mobile */
+                font-size: 0.9rem; /* Slightly smaller font size on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-5">Paste Bin</h1>
+    <div class="card mb-5">
+        <input type="text" id="pasteTitle" class="form-control mb-3" placeholder="Title">
+        <textarea id="pasteContent" class="form-control mb-3" rows="10" placeholder="Enter your text here..."></textarea>
+        <button id="saveButton" class="btn btn-modern btn-save w-100">Save Paste</button>
+    </div>
+    <h2>Your Pastes:</h2>
+    <div id="savedPastes"></div>
+</div>
+
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <pre></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>
